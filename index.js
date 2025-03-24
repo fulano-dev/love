@@ -6,7 +6,13 @@ const PORT = process.env.PORT || 3000;
 app.get('/love', async (req, res) => {
   try {
     const response = await axios.get('https://joaovargas.dev.br/love/db.json');
-    res.json({ love: response.data.love });
+    const love = response.data.love;
+    res.json({
+      love,
+      indiceLove: `O índice love atual é de ${love} infinitos!`,
+      memberOne: 'João Vargas',
+      memberTwo: 'Guilherme Mocelin',
+    });
   } catch (error) {
     res.status(500).json({ error: 'Erro ao buscar o valor de love' });
   }
