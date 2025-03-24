@@ -1,16 +1,15 @@
 const express = require('express');
-const fs = require('fs');
+const axios = require('axios');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.get('/love', (req, res) => {
-  fs.readFile('db.json', 'utf8', (err, data) => {
-    if (err) {
-      return res.status(500).json({ error: 'Erro ao ler o banco' });
-    }
-    const json = JSON.parse(data);
-    res.json({ love: json.love });
-  });
+app.get('/love', async (req, res) => {
+  try {
+    const response = await axios.get('https://joaovargas.dev.br/love/db.json');
+    res.json({ love: response.data.love });
+  } catch (error) {
+    res.status(500).json({ error: 'Erro ao buscar o valor de love' });
+  }
 });
 
 app.listen(PORT, () => {
