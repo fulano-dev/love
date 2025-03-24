@@ -1,0 +1,12 @@
+{
+    "name": "love-api",
+    "version": "1.0.0",
+    "description": "API simples para retornar o valor de love",
+    "main": "index.js",
+    "scripts": {
+      "start": "node index.js"
+    },
+    "dependencies": {
+      "express": "^4.18.2"
+    }
+  }
